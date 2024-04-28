@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, session, render_template, url_for
+from flask import Flask, redirect, request, session, render_template, url_for, jsonify
 # from flask_socketio import SocketIO, send
 import requests
 import os
@@ -9,6 +9,8 @@ app.secret_key = os.urandom(24)  # Secure random key for session management
 CLIENT_ID = 'dbf2401566c6424794543f62af8f8252'
 CLIENT_SECRET = '8b941b153ac34ec891cb5dec838dc275'
 REDIRECT_URI = 'http://localhost:3000/callback'
+
+
 
 @app.route('/')
 def index():
