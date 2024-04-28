@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F7E1DD; /* Soft pink background */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center; /* Center the profile container vertically */
+            justify-content: center; /* Center the profile container horizontally */
+            overflow-x: hidden; /* Prevent horizontal scrollbar across the page */
+        }
+
+        .profile-container {
+            display: flex; /* Allows horizontal scrolling of profiles */
+            overflow-x: auto;
+            width: 90%; /* Adjust based on preference */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            padding: 20px;
+            background-color: white; /* Background for the profile container */
+        }
+
+        .profile {
+            width: 240px; /* Increased width of each profile card */
+            margin: 0 15px;
+            text-align: center;
+            display: inline-block; /* Necessary for horizontal scroll */
+            background-color: #fff; /* White background for profiles */
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .profile img {
+            width: 120px; /* Increased size for profile picture */
+            height: 120px;
+            border-radius: 50%; /* Circle shape */
+            display: block; /* Ensures it's centered */
+            margin: 0 auto 10px; /* Center align */
+        }
+
+        .profile h3 {
+            margin: 0 0 5px; /* Adjusted space below the username */
+        }
+
+        .genres {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .genre-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .genre-list li {
+            display: inline-block;
+            background-color: #EFEFEF;
+            padding: 2px 5px;
+            margin: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 8px 0;
+            margin-top: 10px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #18a148; /* Darker green on hover */
+        }
+
+        .message-bar {
+            display: block;
+            width: calc(100% - 10px); /* Full width minus padding */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile">
+            <h3 id="username">Username</h3>
+            <img id="profilePicture" src="https://via.placeholder.com/120" alt="Profile Picture">
+            <div class="genres">
+                <ul class="genre-list">
+                    <li>Pop</li>
+                    <li>Rock</li>
+                    <li>Jazz</li>
+                </ul>
+            </div>
+            <button id="addFriendButton" class="button">Add as Friend</button>
+            <button id="linkToPlaylistButton" class="button">Link to Playlist</button>
+            <input type="text" class="message-bar" placeholder="Send a message">
+        </div>
+        <!-- Additional profiles would be added here -->
+    </div>
+
+    <script>
+        // Function to fetch user profile data
+        async function fetchUserProfile(accessToken) {
+            try {
+                const response = await fetch('https://api.spotify.com/v1/me', {
+                    headers: {
+                        'Authorization': 'Bearer ' + accessToken
+                    }
+                });
+                const userData = await response.json();
+                        // Add event listener to "Link to Playlist" button
+                document.querySelector('#linkToPlaylistButton').addEventListener('click', () => {
+                    window.location.href = userData.external_urls.spotify;
+                });
+                return userData;
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                return null;
+            }
+        }
+
+        // Example usage after obtaining the access token
+fetch('/get_token')
+    .then(response => response.json())
+    .then(data => {
+        const accessToken = data.access_token;
+        fetchUserProfile(accessToken)
+            .then(userData => {
+                if (userData) {
+                    const usernameElement = document.getElementById('username');
+                    const profilePictureElement = document.getElementById('profilePicture');
+                    // Update username and profile picture elements
+                    usernameElement.textContent = userData.display_name;
+                    if (userData.images.length > 0) {
+                        profilePictureElement.src = userData.images[0].url;
+                    }
+                }
+            });
+    })
+    .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
+
+

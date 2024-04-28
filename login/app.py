@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, session, render_template, url_for
+from flask import Flask, redirect, request, session, render_template, url_for, jsonify
 import requests
 import os
 
@@ -18,6 +18,10 @@ def login():
     scope = 'user-read-private playlist-read-private user-top-read'
     auth_url = f"https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&scope={scope}"
     return redirect(auth_url)
+
+@app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
 
 @app.route('/callback')
 def callback():
@@ -52,7 +56,7 @@ def callback():
         print("Access token not found in response")
         return "Failed to retrieve access token", 500
 
-    return redirect(url_for('profile'))
+    return redirect(url_for('homepage'))
 
 
 @app.route('/profile')
@@ -81,6 +85,9 @@ def profile():
 
     return render_template('profile.html', user=user_data, top_playlist=top_playlist)
 
+@app.route('/get_token', methods=['GET'])
+def get_token():
+    return jsonify({'access_token': session.get('access_token')})
 
 @app.route('/logout')
 def logout():
