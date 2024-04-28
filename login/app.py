@@ -91,3 +91,4 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)  # Fixed to port 3000 to match the REDIRECT_URI
+

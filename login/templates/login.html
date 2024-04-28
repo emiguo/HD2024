@@ -3,19 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with Spotify</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F7E1DD;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centering the content inside the container */
+        }
+        .spotify-button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 8px;
+            border: none;
+            background-color: #1DB954; /* Spotify brand color */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .spotify-button:hover {
+            background-color: #18a148; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome! Login with Spotify</h2>
+        <!-- Spotify login button -->
+        <button class="spotify-button" onclick="loginWithSpotify()">Login with Spotify</button>
+    </div>
     <script>
         function loginWithSpotify() {
-            const clientId = 'dbf2401566c6424794543f62af8f8252';  // Replace 'YOUR_CLIENT_ID' with your actual Spotify Client ID
-            const redirectUri = encodeURIComponent('http://localhost:3000/callback');  // Make sure this URI matches the one registered in your Spotify app
-            const scopes = encodeURIComponent('user-read-private user-read-email');  // Add other scopes as needed
+            const clientId = 'dbf2401566c6424794543f62af8f8252'; // Your actual Spotify Client ID
+            const redirectUri = encodeURIComponent('http://localhost:3000/callback'); // Make sure this URI matches the one registered in your Spotify app
+            const scopes = encodeURIComponent('user-read-private user-read-email'); // Add other scopes as needed
             const url = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
             window.location.href = url;
         }
     </script>
-</head>
-<body>
-    <h2>Login with Spotify</h2>
-    <button onclick="loginWithSpotify()">Log In</button>
 </body>
 </html>
