@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>Welcome, {{ user['display_name'] }}!</h1>
+    <p>Name: {{ user.get('display_name', 'N/A') }}</p>
+    <p>Email: {{ user.get('email', 'N/A') }}</p>
+    <p>Country: {{ user.get('country', 'N/A') }}</p>
+    <p>Your top playlist: {% if top_playlist %}
+        <a href="{{ top_playlist['external_urls']['spotify'] }}">{{ top_playlist['name'] }}</a>
+    {% else %}
+        No playlists found.
+    {% endif %}</p>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>
