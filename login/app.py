@@ -1,4 +1,5 @@
 from flask import Flask, redirect, request, session, render_template, url_for
+# from flask_socketio import SocketIO, send
 import requests
 import os
 
@@ -105,6 +106,10 @@ def logout():
     # Clear the session, removing stored access tokens
     session.clear()
     return redirect(url_for('index'))
+
+@app.route('/get_token', methods=['GET'])
+def get_token():
+    return jsonify({'access_token': session.get('access_token') })
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)  # Fixed to port 3000 to match the REDIRECT_URI

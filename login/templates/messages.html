@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<style>
+  /* Add CSS for the horizontal line */
+  hr {
+    border: none;
+    border-top: 1px solid #ccc; /* Adjust color, thickness, and style as needed */
+    margin: 20px 0; /* Adjust margin as needed */
+  }
+
+  body {
+    background-color: #F7E1DD;
+  }
+  /* Add CSS for the vertical line */
+  .vertical-line {
+    position: absolute;
+    top: 68px; /* Adjust to start below the horizontal line */
+    left: 33.333%; /* Position the line at 1/3 of the screen width */
+    height: calc(100% - 40px); /* Make the line span the remaining height of the viewport after accounting for the margin of the horizontal line */
+    width: 1px; /* Set the width of the line */
+    background-color: #ccc; /* Adjust color as needed */
+  }
+
+  /* Adjust CSS for the right column */
+  .column-right {
+    flex: 1; /* Make the column take up remaining space */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Align content in a column */
+    align-items: center; /* Align content to the center horizontally */
+    padding-left: 500px; /* Add left padding to the column */
+    margin-bottom: 0px; /* Add margin to create space between the image and the container's top edge */
+  }
+
+  /* Adjust CSS for the image */
+  .hero-image {
+    max-width: 100%; /* Ensure image doesn't exceed container width */
+    max-height: 100%; /* Ensure image doesn't exceed container height */
+  }
+
+  /* Add CSS for the title */
+  h2 {
+    padding-right: 850px; /* Add left padding to the title */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: lighter; /* Adjust font weight as needed */
+    opacity: 0.6; /* Adjust opacity as needed */
+  }
+
+  /* CSS for the search bar */
+  .search-bar {
+    margin-top: 20px; /* Add margin to create space between the search bar and the title */
+    padding-left: 20px; /* Add left padding to the search bar */
+  }
+
+  /* CSS for the search input */
+  .search-input {
+    width: 400px; /* Set the width of the input */
+    padding: 8px; /* Add padding to the input */
+    border: 1px solid #ccc; /* Add border to the input */
+    border-radius: 5px; /* Add border radius to the input */
+    box-sizing: border-box; /* Include padding and border in the width */
+  }
+
+  /* CSS for the search button */
+  .search-button {
+    padding: 8px 16px; /* Add padding to the button */
+    margin-left: 8px; /* Add margin to separate the button from the input */
+    background-color: #007bff; /* Set background color of the button */
+    color: #fff; /* Set text color of the button */
+    border: none; /* Remove border of the button */
+    border-radius: 5px; /* Add border radius to the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+
+  /* Change button color on hover */
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .nav-buttons button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ade4f4;
+    background-color: #ade4f4;
+    color: #010a0c;
+    border-radius: 5px;
+  }
+
+  .nav-buttons button:hover {
+    background-color: #8dddf5;
+    color: #010a0c;
+    border: 1px solid #8dddf5;
+    border-radius: 5px;
+
+  }
+</style>
+<body>
+  <nav>
+    <div class="nav-buttons">
+      <button onclick="window.location.href='home.html'">Home</button>
+      <button onclick="window.location.href='profile.html'">Profile</button>
+      <button onclick="window.location.href='messages.html'">Messages</button>
+      <button onclick="window.location.href='settings.html'">Settings</button>
+      <button onclick="window.location.href='logout.html'">Logout</button>
+  </div>
+  </nav>
+  <!-- Horizontal line -->
+  <hr>
+  <!-- Vertical line -->
+  <div class="vertical-line"></div>
+  <section class="hero">
+    <div class="hero-container">
+      <div class="column-left">
+        <h1>Friends</h1>
+        <p>
+          
+        </p>
+        <h2>It seems that you do not have friends. Go add some on the search bar to the right!</h2>
+      </div>
+      <!-- Search bar -->
+      <div class="column-right">
+        <div class="search-bar">
+          <input type="text" class="search-input" placeholder="Add/Follow New People...">
+          <button class="search-button">Search</button>
+        </div>
+      </div>
+      <div class="column-right">
+        <img
+          src="./image-1.svg"
+          alt="illustration"
+          class="hero-image"
+        />
+      </div>
+    </div>
+  </section>
+</body>
+</html>
