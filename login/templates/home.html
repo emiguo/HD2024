@@ -1,0 +1,186 @@
+<!-- templates/main.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Homepage</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F7E1DD; /* Soft pink background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #ade4f4;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-buttons button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ade4f4;
+            color: #010a0c;
+            border: 1px solid #8dddf5;
+            border-radius: 5px;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #8dddf5;
+            color: #010a0c;
+        }
+
+        main {
+            width: 90%;
+            margin-top: 20px;
+        }
+
+        .post-section {
+            border-bottom: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile-container {
+            display: flex;
+            overflow-x: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Slightly less space, adjust as needed */
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 600px;
+            margin-right: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .genres {
+            width: 180px; /* Width of the genre list */
+            height: 100px; /* Fixed height with scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin: 0 10px; /* Margin around the genre box */
+            padding: 5px;
+            border: 1px solid #ccc; /* Border for the genre box */
+            background-color: #f9f9f9; /* Light background for visibility */
+        }
+
+        .genre-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .genre-list li {
+            background-color: #EFEFEF;
+            margin: 2px 0;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button {
+            width: 100px;
+            padding: 10px;
+            margin: 5px 5px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #18a148;
+        }
+
+        .message-bar {
+            width: 592px;
+            height: 30px; /* Reduced height */
+            padding: 5px 5px; /* Adjusted padding */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            align-self: center; /* Centers the message bar */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to SGTM!</h1>
+        <nav>
+            <div class="nav-buttons">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('profile') }}">Profile</a>
+                <a href="{{ url_for('messages') }}">Messages</a>
+                <a href="{{ url_for('settings') }}">Settings</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>          
+        </nav>
+    </header>
+    <main>
+        <section class="post-section">
+            <h2>Posts</h2>
+        </section>
+        <section class="profile-container">
+            <div class="profile">
+                <div class="user-info">
+                    <h3>Username</h3>
+                    <img src="https://via.placeholder.com/80" alt="Profile Picture">
+                </div>
+                <div class="genres">
+                    <ul class="genre-list">
+                        <li>Pop</li>
+                        <li>Rock</li>
+                        <li>Jazz</li>
+                    </ul>
+                </div>
+                <div class="buttons">
+                    <button class="button">Add Friend</button>
+                    <button class="button">Playlist</button>
+                </div>
+            </div>
+        </section>
+        <input type="text" class="message-bar" placeholder="Comment">
+    </main>
+</body>
+</html>
