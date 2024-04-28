@@ -52,7 +52,7 @@ def callback():
         print("Access token not found in response")
         return "Failed to retrieve access token", 500
 
-    return redirect(url_for('profile'))
+    return redirect(url_for('home'))
 
 
 @app.route('/profile')
@@ -82,13 +82,29 @@ def profile():
     return render_template('profile.html', user=user_data, top_playlist=top_playlist)
 
 
+@app.route('/home')
+def home():
+    if 'access_token' not in session:
+        return redirect(url_for('login'))  # Redirect to login if no session token
+    return render_template('home.html')  # Render the home page
+
+@app.route('/messages')
+def messages():
+    # Your logic here, for example, rendering an HTML template
+    return render_template('messages.html')
+
+@app.route('/settings')
+def settings():
+    # Your logic here, for example, rendering an HTML template
+    return render_template('settings.html')
+
+
+
 @app.route('/logout')
 def logout():
     # Clear the session, removing stored access tokens
     session.clear()
     return redirect(url_for('index'))
 
-
 if __name__ == '__main__':
     app.run(debug=True, port=3000)  # Fixed to port 3000 to match the REDIRECT_URI
-
